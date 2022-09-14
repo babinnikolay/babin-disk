@@ -1,0 +1,27 @@
+services:
+  app:
+    image: hukola/babin-disk:6
+    container_name: app
+    depends_on:
+      - postgres
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/babin-disk?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTCs
+      - SPRING_DATASOURCE_USERNAME=diskadmin
+      - SPRING_DATASOURCE_PASSWORD=s4sf1yzGvf59nmVYGgNM
+    ports:
+      - "80:8080"
+    restart: always
+
+  postgres:
+    image: postgres:13.3
+    environment:
+      POSTGRES_DB: "babin-disk"
+      POSTGRES_USER: "diskadmin"
+      POSTGRES_PASSWORD: "s4sf1yzGvf59nmVYGgNM"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - .:/var/lib/postgresql/data
+      - .:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    restart: always

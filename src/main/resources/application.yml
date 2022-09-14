@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/babin-disk?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTCs
+    username: diskadmin
+    password: s4sf1yzGvf59nmVYGgNM
